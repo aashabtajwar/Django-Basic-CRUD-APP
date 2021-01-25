@@ -7,7 +7,7 @@ from . models import Post
 # django rest framework libraries
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from django.contrib.auth.decorators import login_required
 from .serializers import PostSerializer
 
 # Create your views here.
@@ -68,8 +68,9 @@ def deletePost(request, pk):
 #    return HttpResponse(blog_posts)
 
 # defining home route
+@login_required
 def home(request):
-    return HttpResponse('Home')
+    return render(request, 'blog/home.html')
 
 # about route
 def about(request):
